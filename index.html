@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprehensive Risk Management Tool</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f4f6f9;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2.4em;
+      color: #00509e;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .container {
+      max-width: 700px;
+      width: 100%;
+      padding: 25px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease;
+    }
+    .description {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #555;
+      font-size: 1em;
+      line-height: 1.5;
+    }
+    .step {
+      margin-bottom: 20px;
+    }
+    .step h2 {
+      font-size: 1.2em;
+      color: #00509e;
+      margin-bottom: 8px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-top: 10px;
+      color: #444;
+    }
+    .confidence-description {
+      font-size: 0.9em;
+      color: #777;
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      font-size: 1em;
+    }
+    input:focus, select:focus {
+      border-color: #00509e;
+      box-shadow: 0 0 8px rgba(0, 80, 158, 0.2);
+      outline: none;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #007acc;
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .btn:hover {
+      background-color: #005f99;
+      transform: scale(1.02);
+    }
+    .result, .history {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #e8f4fa;
+      color: #004085;
+      border: 1px solid #b8daff;
+      border-radius: 8px;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+    .history h3 {
+      margin-bottom: 10px;
+    }
+    ul {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 5px;
+    }
+    .high-risk { color: #d9534f; }     /* Red for High Risk */
+    .medium-risk { color: #f0ad4e; }   /* Orange for Medium Risk */
+    .low-risk { color: #5cb85c; }      /* Green for Low Risk */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Risk Management Tool</h1>
+    <p class="description">
+      This tool helps small businesses assess the risk level of their key assets by evaluating potential threats and vulnerabilities.
+      It provides a detailed breakdown of risks, mitigation tips, and tracks previous assessments to identify trends.
+    </p>
+
+    <!-- Step 1: Identify Assets with Confidence Level -->
+    <div class="step">
+      <h2>1. Identify Assets</h2>
+      <label for="asset">Asset Description</label>
+      <input type="text" id="asset" placeholder="e.g., Customer Data, Web Server" maxlength="100" aria-label="Asset Description">
+
+      <label for="assetValue">Asset Value</label>
+      <select id="assetValue" aria-label="Asset Value">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <label for="assetConfidence">Confidence Level</label>
+      <select id="assetConfidence" aria-label="Confidence Level for Asset">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <p class="confidence-description">
+        **Low**: You’re uncertain about the asset’s value or impact.<br>
+        **Medium**: You have some information but may be making assumptions.<br>
+        **High**: You’re confident and have reliable information about the asset.
+      </p>
+    </div>
+
+    <!-- Step 2: Identify Threats with Confidence Level -->
+    <div class="step">
+      <h2>2. Identify Threats</h2>
+      <label for="threat">Potential Threat</label>
+      <input type="text" id="threat" placeholder="e.g., Data Breach, Malware" maxlength="100" aria-label="Potential Threat">
+
+      <label for="threatLikelihood">Likelihood of Threat</label>
+      <select id="threatLikelihood" aria-label="Likelihood of Threat">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <label for="threatConfidence">Confidence Level</label>
+      <select id="threatConfidence" aria-label="Confidence Level for Threat">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <p class="confidence-description">
+        **Low**: You’re uncertain about the threat’s likelihood.<br>
+        **Medium**: You have some understanding but may lack complete data.<br>
+        **High**: You’re confident, backed by reliable sources or experience.
+      </p>
+    </div>
+
+    <!-- Step 3: Identify Vulnerabilities with Confidence Level -->
+    <div class="step">
+      <h2>3. Identify Vulnerabilities</h2>
+      <label for="vulnerability">Known Vulnerability</label>
+      <input type="text" id="vulnerability" placeholder="e.g., Outdated Software, Weak Passwords" maxlength="100" aria-label="Known Vulnerability">
+
+      <label for="vulnerabilityImpact">Impact of Vulnerability</label>
+      <select id="vulnerabilityImpact" aria-label="Impact of Vulnerability">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <label for="vulnerabilityConfidence">Confidence Level</label>
+      <select id="vulnerabilityConfidence" aria-label="Confidence Level for Vulnerability">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <p class="confidence-description">
+        **Low**: You’re unsure about the vulnerability’s impact or relevance.<br>
+        **Medium**: You’re somewhat confident but could use more information.<br>
+        **High**: You’re very certain about the vulnerability’s impact based on solid data.
+      </p>
+    </div>
+
+    <!-- Step 4: Assess Risk -->
+    <div class="step">
+      <h2>4. Assess Risk</h2>
+      <p>Click the button to calculate risk level, view recommendations, and see previous assessments.</p>
+      <button class="btn" onclick="assessRisk()">Assess Risk</button>
+    </div>
+
+    <!-- Risk Result -->
+    <div id="result" class="result" style="display:none;"></div>
+
+    <!-- Risk Assessment History -->
+    <div id="history" class="history" style="display:none;">
+      <h3>Previous Assessments</h3>
+      <ul id="historyList"></ul>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * Sanitize user input to prevent XSS.
+     * @param {string} input - The input text to sanitize.
+     * @returns {string} - The sanitized text.
+     */
+    function sanitizeInput(input) {
+      const div = document.createElement('div');
+      div.appendChild(document.createTextNode(input));
+      return div.innerHTML;
+    }
+
+    /**
+     * Determine risk level based on asset, threat likelihood, and vulnerability impact.
+     * @param {string} assetValue - Value of the asset.
+     * @param {string} threatLikelihood - Likelihood of the threat.
+     * @param {string} vulnerabilityImpact - Impact of the vulnerability.
+     * @returns {string} - Risk level.
+     */
+    function determineRiskLevel(assetValue, threatLikelihood, vulnerabilityImpact) {
+      const values = ["low", "medium", "high"];
+      const highestValue = Math.max(values.indexOf(assetValue), values.indexOf(threatLikelihood), values.indexOf(vulnerabilityImpact));
+      return ["Low Risk", "Medium Risk", "High Risk"][highestValue];
+    }
+
+    /**
+     * Display risk assessment result with recommendations and color-coded risk level.
+     * @param {string} asset - The asset being assessed.
+     * @param {string} threat - The identified threat.
+     * @param {string} vulnerability - The known vulnerability.
+     * @param {string} riskLevel - The determined risk level.
+     */
+    function displayResult(asset, threat, vulnerability, riskLevel) {
+      const resultDiv = document.getElementById("result");
+      resultDiv.style.display = "block";
+
+      // Determine color class based on risk level
+      let riskClass = "";
+      if (riskLevel === "High Risk") {
+        riskClass = "high-risk";
+      } else if (riskLevel === "Medium Risk") {
+        riskClass = "medium-risk";
+      } else if (riskLevel === "Low Risk") {
+        riskClass = "low-risk";
+      }
+
+      // Display result with color-coded risk level
+      resultDiv.innerHTML = `
+        <strong class="${riskClass}">${riskLevel}</strong>: Your asset "<strong>${asset}</strong>" faces a ${riskLevel.toLowerCase()} due to the threat "<strong>${threat}</strong>" and vulnerability "<strong>${vulnerability}</strong>."
+        <br><br>
+        Recommendations:
+        <ul>
+          <li><strong>High Risk:</strong> Ensure robust firewalls, data encryption, and continuous monitoring.</li>
+          <li><strong>Medium Risk:</strong> Review and strengthen existing security measures; monitor and address potential vulnerabilities.</li>
+          <li><strong>Low Risk:</strong> Maintain security practices; conduct periodic reviews and stay updated on security standards.</li>
+        </ul>`;
+
+      // Save result to history
+      saveToHistory(asset, threat, vulnerability, riskLevel);
+    }
+
+    /**
+     * Save the assessment result to history using localStorage.
+     * @param {string} asset - The asset being assessed.
+     * @param {string} threat - The identified threat.
+     * @param {string} vulnerability - The known vulnerability.
+     * @param {string} riskLevel - The determined risk level.
+     */
+    function saveToHistory(asset, threat, vulnerability, riskLevel) {
+      const history = JSON.parse(localStorage.getItem("riskHistory")) || [];
+      const entry = { asset, threat, vulnerability, riskLevel, date: new Date().toLocaleString() };
+      history.unshift(entry); // Add the new entry to the beginning
+      localStorage.setItem("riskHistory", JSON.stringify(history));
+      displayHistory();
+    }
+
+    /**
+     * Display the assessment history from localStorage.
+     */
+    function displayHistory() {
+      const history = JSON.parse(localStorage.getItem("riskHistory")) || [];
+      const historyDiv = document.getElementById("history");
+      const historyList = document.getElementById("historyList");
+      historyList.innerHTML = "";
+
+      history.forEach(entry => {
+        const li = document.createElement("li");
+        li.innerHTML = `${entry.date}: Asset "<strong>${entry.asset}</strong>" - ${entry.riskLevel}`;
+        historyList.appendChild(li);
+      });
+
+      historyDiv.style.display = history.length ? "block" : "none";
+    }
+
+    /**
+     * Main function to assess risk based on user inputs.
+     */
+    function assessRisk() {
+      const asset = sanitizeInput(document.getElementById("asset").value.trim());
+      const threat = sanitizeInput(document.getElementById("threat").value.trim());
+      const vulnerability = sanitizeInput(document.getElementById("vulnerability").value.trim());
+      const assetValue = document.getElementById("assetValue").value;
+      const threatLikelihood = document.getElementById("threatLikelihood").value;
+      const vulnerabilityImpact = document.getElementById("vulnerabilityImpact").value;
+
+      const riskLevel = determineRiskLevel(assetValue, threatLikelihood, vulnerabilityImpact);
+      displayResult(asset, threat, vulnerability, riskLevel);
+    }
+
+    // Display history on page load
+    window.onload = displayHistory;
+  </script>
+
+</body>
+</html>
